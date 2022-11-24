@@ -12,7 +12,7 @@ import { IProxyRegistry } from '../../../contracts/external/opensea/IProxyRegist
 import { NounsDescriptor } from '../../../contracts/NounsDescriptor.sol';
 import { NounsSeeder } from '../../../contracts/NounsSeeder.sol';
 import { NounsToken } from '../../../contracts/NounsToken.sol';
-import { NounsDAOProxy } from '../../../contracts/governance/NounsDAOProxy.sol';
+import { NounsDAOProxyV1 } from '../../../contracts/governance/NounsDAOProxyV1.sol';
 import { Inflator } from '../../../contracts/Inflator.sol';
 
 abstract contract DeployUtils is Test, DescriptorHelpers {
@@ -53,7 +53,7 @@ abstract contract DeployUtils is Test, DescriptorHelpers {
         NounsDAOExecutor timelock = new NounsDAOExecutor(address(1), TIMELOCK_DELAY);
         NounsDescriptor descriptor = new NounsDescriptor();
         NounsToken nounsToken = new NounsToken(noundersDAO, minter, descriptor, new NounsSeeder(), proxyRegistry);
-        NounsDAOProxy proxy = new NounsDAOProxy(
+        NounsDAOProxyV1 proxy = new NounsDAOProxyV1(
             address(timelock),
             address(nounsToken),
             vetoer,

@@ -177,7 +177,7 @@ task('deploy-short-times-daov1', 'Deploy all Nouns contracts with short gov time
       NounsDAOLogicV1: {
         waitForConfirmation: true,
       },
-      NounsDAOProxy: {
+      NounsDAOProxyV1: {
         args: [
           () => deployment.NounsDAOExecutor.address,
           () => deployment.NounsToken.address,
@@ -192,7 +192,7 @@ task('deploy-short-times-daov1', 'Deploy all Nouns contracts with short gov time
         waitForConfirmation: true,
         validateDeployment: () => {
           const expected = expectedNounsDAOProxyAddress.toLowerCase();
-          const actual = deployment.NounsDAOProxy.address.toLowerCase();
+          const actual = deployment.NounsDAOProxyV1.address.toLowerCase();
           if (expected !== actual) {
             throw new Error(
               `Unexpected Nouns DAO proxy address. Expected: ${expected}. Actual: ${actual}.`,

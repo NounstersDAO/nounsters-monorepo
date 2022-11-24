@@ -16,7 +16,7 @@
  *********************************/
 
 // LICENSE
-// NounsDAOProxy.sol is a modified version of Compound Lab's GovernorBravoDelegator.sol:
+// NounsDAOProxyV1.sol is a modified version of Compound Lab's GovernorBravoDelegator.sol:
 // https://github.com/compound-finance/compound-protocol/blob/b9b14038612d846b83f8a009a82c38974ff2dcfe/contracts/Governance/GovernorBravoDelegator.sol
 //
 // GovernorBravoDelegator.sol source code Copyright 2020 Compound Labs, Inc. licensed under the BSD-3-Clause license.
@@ -25,7 +25,7 @@
 // Additional conditions of BSD-3-Clause can be found here: https://opensource.org/licenses/BSD-3-Clause
 //
 //
-// NounsDAOProxy.sol uses parts of Open Zeppelin's Proxy.sol:
+// NounsDAOProxyV1.sol uses parts of Open Zeppelin's Proxy.sol:
 // https://github.com/OpenZeppelin/openzeppelin-contracts/blob/5c8746f56b4bed8cc9e0e044f5f69ab2f9428ce1/contracts/proxy/Proxy.sol
 //
 // Proxy.sol source code licensed under MIT License.
@@ -37,7 +37,7 @@ pragma solidity ^0.8.6;
 
 import './NounsDAOInterfaces.sol';
 
-contract NounsDAOProxy is NounsDAOProxyStorage, NounsDAOEvents {
+contract NounsDAOProxyV1 is NounsDAOProxyStorage, NounsDAOEvents {
     constructor(
         address timelock_,
         address nouns_,
@@ -76,8 +76,8 @@ contract NounsDAOProxy is NounsDAOProxyStorage, NounsDAOEvents {
      * @param implementation_ The address of the new implementation for delegation
      */
     function _setImplementation(address implementation_) public {
-        require(msg.sender == admin, 'NounsDAOProxy::_setImplementation: admin only');
-        require(implementation_ != address(0), 'NounsDAOProxy::_setImplementation: invalid implementation address');
+        require(msg.sender == admin, 'NounsDAOProxyV1::_setImplementation: admin only');
+        require(implementation_ != address(0), 'NounsDAOProxyV1::_setImplementation: invalid implementation address');
 
         address oldImplementation = implementation;
         implementation = implementation_;

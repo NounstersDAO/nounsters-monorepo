@@ -5,7 +5,7 @@ import { Contract as EthersContract } from 'ethers';
 import { ContractName } from './types';
 
 type LocalContractName =
-  | Exclude<ContractName, 'NounsDAOLogicV1' | 'NounsDAOProxy'>
+  | Exclude<ContractName, 'NounsDAOLogicV1' | 'NounsDAOProxyV1'>
   | 'NounsDAOLogicV2'
   | 'NounsDAOProxyV2'
   | 'WETH'

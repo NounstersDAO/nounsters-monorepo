@@ -2,7 +2,7 @@ import { task } from 'hardhat/config';
 
 task('upgrade-descriptor-via-proposal', 'Upgrade NounsToken to use Descriptor V2.')
   .addParam('descriptor', 'The `NounsDescriptorV2` contract address')
-  .addParam('dao', 'The `NounsDAOProxy` contract address')
+  .addParam('dao', 'The `NounsDAOProxyV1` contract address')
   .addParam('token', 'The `NounsToken` contract address')
   .setAction(async ({ descriptor, dao, token }, { ethers }) => {
     const targets = [token as string];

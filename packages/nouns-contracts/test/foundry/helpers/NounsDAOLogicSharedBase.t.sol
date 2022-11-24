@@ -4,7 +4,7 @@ pragma solidity ^0.8.15;
 import 'forge-std/Test.sol';
 import { NounsDAOLogicV1 } from '../../../contracts/governance/NounsDAOLogicV1.sol';
 import { NounsDAOLogicV2 } from '../../../contracts/governance/NounsDAOLogicV2.sol';
-import { NounsDAOProxy } from '../../../contracts/governance/NounsDAOProxy.sol';
+import { NounsDAOProxyV1 } from '../../../contracts/governance/NounsDAOProxyV1.sol';
 import { NounsDAOProxyV2 } from '../../../contracts/governance/NounsDAOProxyV2.sol';
 import { NounsDescriptorV2 } from '../../../contracts/NounsDescriptorV2.sol';
 import { DeployUtils } from './DeployUtils.sol';

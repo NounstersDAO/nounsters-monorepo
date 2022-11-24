@@ -15,7 +15,7 @@ import {
   NounsDAOLogicV1Harness__factory as NounsDaoLogicV1HarnessFactory,
   NounsDAOLogicV2,
   NounsDAOLogicV2__factory as NounsDaoLogicV2Factory,
-  NounsDAOProxy__factory as NounsDaoProxyFactory,
+  NounsDAOProxyV1__factory as NounsDaoProxyV1Factory,
   NounsDAOLogicV1Harness,
   NounsDAOProxyV2__factory as NounsDaoProxyV2Factory,
   NounsArt__factory as NounsArtFactory,
@@ -194,7 +194,7 @@ export const deployGovAndToken = async (
   // nonce 7: NounsDescriptor.setArt
   // nonce 8: Deploy NounsSeeder
   // nonce 9: Deploy NounsToken
-  // nonce 10: Deploy NounsDAOProxy
+  // nonce 10: Deploy NounsDAOProxyV1
   // nonce 11+: populate Descriptor
 
   const govDelegatorAddress = ethers.utils.getContractAddress({
@@ -214,7 +214,7 @@ export const deployGovAndToken = async (
   const token = await deployNounsToken(deployer);
 
   // Deploy Delegator
-  await new NounsDaoProxyFactory(deployer).deploy(
+  await new NounsDaoProxyV1Factory(deployer).deploy(
     timelock.address,
     token.address,
     vetoer || address(0),
@@ -421,7 +421,7 @@ export const deployGovernorV1 = async (
   const { address: govDelegateAddress } = await new NounsDaoLogicV1HarnessFactory(
     deployer,
   ).deploy();
-  const params: Parameters<NounsDaoProxyFactory['deploy']> = [
+  const params: Parameters<NounsDaoProxyV1Factory['deploy']> = [
     address(0),
     tokenAddress,
     deployer.address,
@@ -434,7 +434,7 @@ export const deployGovernorV1 = async (
   ];
 
   const { address: _govDelegatorAddress } = await (
-    await ethers.getContractFactory('NounsDAOProxy', deployer)
+    await ethers.getContractFactory('NounsDAOProxyV1', deployer)
   ).deploy(...params);
 
   return NounsDaoLogicV1HarnessFactory.connect(_govDelegatorAddress, deployer);
@@ -476,7 +476,7 @@ export const deployGovernorV2 = async (
   proxyAddress: string,
 ): Promise<NounsDAOLogicV2> => {
   const v2LogicContract = await new NounsDaoLogicV2Factory(deployer).deploy();
-  const proxy = NounsDaoProxyFactory.connect(proxyAddress, deployer);
+  const proxy = NounsDaoProxyV1Factory.connect(proxyAddress, deployer);
   await proxy._setImplementation(v2LogicContract.address);
 
   const govV2 = NounsDaoLogicV2Factory.connect(proxyAddress, deployer);

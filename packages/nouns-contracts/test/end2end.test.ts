@@ -10,7 +10,7 @@ import {
   NounsAuctionHouse__factory as NounsAuctionHouseFactory,
   NounsDescriptorV2,
   NounsDescriptorV2__factory as NounsDescriptorV2Factory,
-  NounsDAOProxy__factory as NounsDaoProxyFactory,
+  NounsDAOProxyV1__factory as NounsDaoProxyV1Factory,
   NounsDAOLogicV1,
   NounsDAOLogicV1__factory as NounsDaoLogicV1Factory,
   NounsDAOExecutor,
@@ -80,7 +80,7 @@ async function deploy() {
   // nonce 6: Deploy NounsToken
   // nonce 0: Deploy NounsDAOExecutor
   // nonce 1: Deploy NounsDAOLogicV1
-  // nonce 7: Deploy NounsDAOProxy
+  // nonce 7: Deploy NounsDAOProxyV1
   // nonce ++: populate Descriptor
   // nonce ++: set ownable contracts owner to timelock
 
@@ -129,7 +129,7 @@ async function deploy() {
   const govDelegate = await new NounsDaoLogicV1Factory(deployer).deploy();
 
   // 7a. DEPLOY Delegator
-  const nounsDAOProxy = await new NounsDaoProxyFactory(deployer).deploy(
+  const nounsDAOProxy = await new NounsDaoProxyV1Factory(deployer).deploy(
     timelock.address,
     nounsToken.address,
     noundersDAO.address, // NoundersDAO is vetoer

@@ -180,7 +180,7 @@ task('deploy', 'Deploys NFTDescriptor, NounsDescriptor, NounsSeeder, and NounsTo
       NounsDAOLogicV1: {
         waitForConfirmation: true,
       },
-      NounsDAOProxy: {
+      NounsDAOProxyV1: {
         args: [
           () => deployment.NounsDAOExecutor.address,
           () => deployment.NounsToken.address,
@@ -195,7 +195,7 @@ task('deploy', 'Deploys NFTDescriptor, NounsDescriptor, NounsSeeder, and NounsTo
         waitForConfirmation: true,
         validateDeployment: () => {
           const expected = expectedNounsDAOProxyAddress.toLowerCase();
-          const actual = deployment.NounsDAOProxy.address.toLowerCase();
+          const actual = deployment.NounsDAOProxyV1.address.toLowerCase();
           if (expected !== actual) {
             throw new Error(
               `Unexpected Nouns DAO proxy address. Expected: ${expected}. Actual: ${actual}.`,

@@ -8,7 +8,7 @@ task(
   'Populates the descriptor with color palettes and Noun parts; accepts an input JSON with missing properies.',
 )
   .addParam('nounsDescriptor', 'The `NounsDescriptor` contract address')
-  .addParam('daoAddress', 'The `NounsDAOProxy` contract address')
+  .addParam('daoAddress', 'The `NounsDAOProxyV1` contract address')
   .addParam('imageDataPath', 'The path to the image data JSON file')
   .addParam('proposalTextPath', 'Path to the proposal descriptor text file')
   .setAction(

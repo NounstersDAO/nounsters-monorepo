@@ -4,7 +4,7 @@ pragma solidity ^0.8.15;
 import 'forge-std/Test.sol';
 import { NounsDAOLogicV1 } from '../../contracts/governance/NounsDAOLogicV1.sol';
 import { NounsDAOLogicV2 } from '../../contracts/governance/NounsDAOLogicV2.sol';
-import { NounsDAOProxy } from '../../contracts/governance/NounsDAOProxy.sol';
+import { NounsDAOProxyV1 } from '../../contracts/governance/NounsDAOProxyV1.sol';
 import { NounsDAOProxyV2 } from '../../contracts/governance/NounsDAOProxyV2.sol';
 import { NounsDAOStorageV1, NounsDAOStorageV2 } from '../../contracts/governance/NounsDAOInterfaces.sol';
 import { NounsDescriptorV2 } from '../../contracts/NounsDescriptorV2.sol';
@@ -185,7 +185,7 @@ contract NounsDAOLogicV1StateTest is NounsDAOLogicV1V2StateTest {
         return
             NounsDAOLogicV1(
                 payable(
-                    new NounsDAOProxy(
+                    new NounsDAOProxyV1(
                         address(timelock),
                         address(nounsToken),
                         vetoer,
@@ -438,7 +438,7 @@ contract NounsDAOLogicV1VetoingTest is NounsDAOLogicV1V2VetoingTest {
         return
             NounsDAOLogicV1(
                 payable(
-                    new NounsDAOProxy(
+                    new NounsDAOProxyV1(
                         address(timelock),
                         address(nounsToken),
                         vetoer,

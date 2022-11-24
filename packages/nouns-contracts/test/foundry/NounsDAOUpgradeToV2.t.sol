@@ -5,7 +5,7 @@ import 'forge-std/Test.sol';
 import { NounsDAOLogicSharedBaseTest } from './helpers/NounsDAOLogicSharedBase.t.sol';
 import { NounsDAOLogicV1 } from '../../contracts/governance/NounsDAOLogicV1.sol';
 import { NounsDAOLogicV2 } from '../../contracts/governance/NounsDAOLogicV2.sol';
-import { NounsDAOProxy } from '../../contracts/governance/NounsDAOProxy.sol';
+import { NounsDAOProxyV1 } from '../../contracts/governance/NounsDAOProxyV1.sol';
 import { NounsToken } from '../../contracts/NounsToken.sol';
 import { NounsDAOExecutor } from '../../contracts/governance/NounsDAOExecutor.sol';
 import { NounsDAOStorageV1, NounsDAOStorageV2 } from '../../contracts/governance/NounsDAOInterfaces.sol';
@@ -32,7 +32,7 @@ contract NounsDAOUpgradeToV2 is NounsDAOLogicSharedBaseTest {
         return
             NounsDAOLogicV1(
                 payable(
-                    new NounsDAOProxy(
+                    new NounsDAOProxyV1(
                         address(timelock),
                         address(nounsToken),
                         vetoer,
@@ -80,7 +80,7 @@ contract NounsDAOUpgradeToV2 is NounsDAOLogicSharedBaseTest {
         mint(voter, 2);
 
         proposeAndExecuteUpgradeToV2AndSetDQParams(address(daoLogicV2));
-        address implementationPostUpgrade = NounsDAOProxy(payable(address(daoProxy))).implementation();
+        address implementationPostUpgrade = NounsDAOProxyV1(payable(address(daoProxy))).implementation();
 
         assertEq(implementationPostUpgrade, address(daoLogicV2));
 

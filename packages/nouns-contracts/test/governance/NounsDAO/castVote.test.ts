@@ -23,7 +23,7 @@ import {
   NounsDescriptorV2__factory as NounsDescriptorV2Factory,
   NounsDAOLogicV1Harness,
   NounsDAOLogicV1Harness__factory as NounsDaoLogicV1HarnessFactory,
-  NounsDAOProxy__factory as NounsDaoProxyFactory,
+  NounsDAOProxyV1__factory as NounsDaoProxyV1Factory,
 } from '../../../typechain';
 
 chai.use(solidity);
@@ -36,7 +36,7 @@ async function deployGovernor(
   const { address: govDelegateAddress } = await new NounsDaoLogicV1HarnessFactory(
     deployer,
   ).deploy();
-  const params: Parameters<NounsDaoProxyFactory['deploy']> = [
+  const params: Parameters<NounsDaoProxyV1Factory['deploy']> = [
     address(0),
     tokenAddress,
     deployer.address,
@@ -49,7 +49,7 @@ async function deployGovernor(
   ];
 
   const { address: _govDelegatorAddress } = await (
-    await ethers.getContractFactory('NounsDAOProxy', deployer)
+    await ethers.getContractFactory('NounsDAOProxyV1', deployer)
   ).deploy(...params);
 
   return NounsDaoLogicV1HarnessFactory.connect(_govDelegatorAddress, deployer);
