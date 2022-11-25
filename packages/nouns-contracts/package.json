@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Nouns solidity contracts & artifacts",
   "author": "Nounders",
-  "homepage": "https://nouns.wtf",
+  "homepage": "https://nounsters.wtf",
   "license": "GPL-3.0",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
