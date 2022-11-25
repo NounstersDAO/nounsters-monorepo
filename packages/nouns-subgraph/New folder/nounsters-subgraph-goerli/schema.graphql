@@ -1,0 +1,108 @@
+type ExampleEntity @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes! # address
+  approved: Bytes! # address
+}
+type AuctionBid @entity {
+  id: ID!
+  nounId: BigInt! # uint256
+  sender: Bytes! # address
+  value: BigInt! # uint256
+  extended: Boolean! # bool
+}
+
+type AuctionCreated @entity {
+  id: ID!
+  nounId: BigInt! # uint256
+  startTime: BigInt! # uint256
+  endTime: BigInt! # uint256
+}
+
+type AuctionExtended @entity {
+  id: ID!
+  nounId: BigInt! # uint256
+  endTime: BigInt! # uint256
+}
+
+type AuctionMinBidIncrementPercentageUpdated @entity {
+  id: ID!
+  minBidIncrementPercentage: BigInt! # uint256
+}
+
+type AuctionReservePriceUpdated @entity {
+  id: ID!
+  reservePrice: BigInt! # uint256
+}
+
+type AuctionSettled @entity {
+  id: ID!
+  nounId: BigInt! # uint256
+  winner: Bytes! # address
+  amount: BigInt! # uint256
+}
+
+type AuctionTimeBufferUpdated @entity {
+  id: ID!
+  timeBuffer: BigInt! # uint256
+}
+
+type nounsAuctionHouseOwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type Paused @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type Unpaused @entity {
+  id: ID!
+  account: Bytes! # address
+}
+type CancelTransaction @entity {
+  id: ID!
+  txHash: Bytes! # bytes32
+  target: Bytes! # address
+  value: BigInt! # uint256
+  signature: String! # string
+  data: Bytes! # bytes
+  eta: BigInt! # uint256
+}
+
+type ExecuteTransaction @entity {
+  id: ID!
+  txHash: Bytes! # bytes32
+  target: Bytes! # address
+  value: BigInt! # uint256
+  signature: String! # string
+  data: Bytes! # bytes
+  eta: BigInt! # uint256
+}
+
+type NewAdmin @entity {
+  id: ID!
+  newAdmin: Bytes! # address
+}
+
+type NewDelay @entity {
+  id: ID!
+  newDelay: BigInt! # uint256
+}
+
+type NewPendingAdmin @entity {
+  id: ID!
+  newPendingAdmin: Bytes! # address
+}
+
+type QueueTransaction @entity {
+  id: ID!
+  txHash: Bytes! # bytes32
+  target: Bytes! # address
+  value: BigInt! # uint256
+  signature: String! # string
+  data: Bytes! # bytes
+  eta: BigInt! # uint256
+}
