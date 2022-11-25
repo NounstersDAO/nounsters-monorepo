@@ -25,6 +25,7 @@ library NFTDescriptorV2 {
         string name;
         string description;
         string background;
+        uint16 colors;
         ISVGRenderer.Part[] parts;
     }
 
@@ -38,7 +39,7 @@ library NFTDescriptorV2 {
     {
         string memory image = generateSVGImage(
             renderer,
-            ISVGRenderer.SVGParams({ parts: params.parts, background: params.background })
+            ISVGRenderer.SVGParams({ parts: params.parts, background: params.background, colors: params.colors })
         );
 
         // prettier-ignore

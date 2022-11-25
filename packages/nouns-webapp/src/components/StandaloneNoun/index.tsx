@@ -1,4 +1,4 @@
-import { ImageData as data, getNounData } from '@nouns/assets';
+import { ImageData as data, getNounData, getColorsFromSeed } from '@nouns/assets';
 import { buildSVG } from '@nouns/sdk';
 import { BigNumber as EthersBN } from 'ethers';
 import { INounSeed, useNounSeed } from '../../wrappers/nounToken';
@@ -29,7 +29,7 @@ export const getNoun = (nounId: string | EthersBN, seed: INounSeed) => {
   const name = `Noun ${id}`;
   const description = `Noun ${id} is a member of the Nouns DAO`;
   const { parts, background } = getNounData(seed);
-  const image = `data:image/svg+xml;base64,${btoa(buildSVG(parts, data.palette, background))}`;
+  const image = `data:image/svg+xml;base64,${btoa(buildSVG(parts, data.palette, getColorsFromSeed(seed), background))}`;
 
   return {
     name,

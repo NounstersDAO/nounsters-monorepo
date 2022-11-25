@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 
 /// @title A contract used to convert multi-part RLE compressed images to SVG
+/// This has been adjusted to swap "010101" and "fefefe" palette colors
 
 /*********************************
  * ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ *
@@ -69,14 +70,14 @@ contract SVGRenderer is ISVGRenderer {
         Part[] memory parts = new Part[](1);
         parts[0] = part;
 
-        return _generateSVGRects(SVGParams({ parts: parts, background: '' }));
+        return _generateSVGRects(SVGParams({ parts: parts, background: '', colors: 0 }));
     }
 
     /**
      * @notice Given RLE image data and color palette pointers, merge to generate a partial SVG image.
      */
     function generateSVGParts(Part[] calldata parts) external pure override returns (string memory partialSVG) {
-        return _generateSVGRects(SVGParams({ parts: parts, background: '' }));
+        return _generateSVGRects(SVGParams({ parts: parts, background: '', colors: 0 }));
     }
 
     /**
@@ -97,6 +98,7 @@ contract SVGRenderer is ISVGRenderer {
         ];
         string memory rects;
         string[] memory cache;
+        uint16 colors = params.colors;
         for (uint8 p = 0; p < params.parts.length; p++) {
             cache = new string[](256); // Initialize color cache
 
@@ -114,6 +116,10 @@ contract SVGRenderer is ISVGRenderer {
                 uint8 length = _getRectLength(currentX, draw.length, image.bounds.right);
                 while (length > 0) {
                     if (draw.colorIndex != 0) {
+                        //Palette swap here
+                        if (draw.colorIndex == 1 || draw.colorIndex == 2) {
+                            draw.colorIndex = uint8(colors << ((draw.colorIndex - 1) * 8));
+                        }
                         buffer[cursor] = lookup[length];                                 // width
                         buffer[cursor + 1] = lookup[currentX];                           // x
                         buffer[cursor + 2] = lookup[currentY];                           // y

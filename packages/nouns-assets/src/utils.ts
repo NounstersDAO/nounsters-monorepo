@@ -7,6 +7,10 @@ const { bodies, accessories, heads, glasses } = images;
 
 type ObjectKey = keyof typeof images;
 
+export const getColorsFromSeed = (seed: NounSeed): number[] => {
+  return [((seed.accessory % (33 - 3)) + 3), ((seed.head % (51 - 27)) + 27)];
+}
+
 /**
  * Get encoded part and background information using a Noun seed
  * @param seed The Noun seed

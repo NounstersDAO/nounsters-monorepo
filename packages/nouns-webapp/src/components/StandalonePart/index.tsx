@@ -18,7 +18,7 @@ export const getBackground = (partIndex: number) => {
 
 export const getPart = (partType: string, partIndex: number) => {
   const data = getPartData(partType, partIndex);
-  const image = `data:image/svg+xml;base64,${btoa(buildSVG([{ data }], imageData.palette))}`;
+  const image = `data:image/svg+xml;base64,${btoa(buildSVG([{ data }], imageData.palette, [1, 2]))}`;
 
   return { image };
 };

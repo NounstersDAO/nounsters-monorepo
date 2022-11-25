@@ -23,6 +23,7 @@ import { INounsDescriptorMinimal } from './interfaces/INounsDescriptorMinimal.so
 contract NounsSeeder is INounsSeeder {
     /**
      * @notice Generate a pseudo-random Noun seed using the previous blockhash and noun ID.
+     *
      */
     // prettier-ignore
     function generateSeed(uint256 nounId, INounsDescriptorMinimal descriptor) external view override returns (Seed memory) {

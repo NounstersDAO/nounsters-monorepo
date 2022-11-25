@@ -428,18 +428,23 @@ contract NounsDescriptorV2 is INounsDescriptorV2, Ownable {
             name: name,
             description: description,
             parts: getPartsForSeed(seed),
-            background: art.backgrounds(seed.background)
+            background: art.backgrounds(seed.background),
+            colors: uint16(uint8((seed.accessory % (33 - 3)) + 3) | uint8((seed.head % (51 - 27)) + 27))
         });
         return NFTDescriptorV2.constructTokenURI(renderer, params);
     }
 
     /**
-     * @notice Given a seed, construct a base64 encoded SVG image.
+     * @notice Given a seed, construct a base64 encoded SVG image. Use the accessory and head to seed colors.
      */
     function generateSVGImage(INounsSeeder.Seed memory seed) external view override returns (string memory) {
+        //We will need to remove the hardcoding of the colors, below!! DELETE
+        //Bodies: 3:33
+        //Glasses: 27:51
         ISVGRenderer.SVGParams memory params = ISVGRenderer.SVGParams({
             parts: getPartsForSeed(seed),
-            background: art.backgrounds(seed.background)
+            background: art.backgrounds(seed.background),
+            colors: uint16(uint8((seed.accessory % (33 - 3)) + 3) | uint8((seed.head % (51 - 27)) + 27))
         });
         return NFTDescriptorV2.generateSVGImage(renderer, params);
     }

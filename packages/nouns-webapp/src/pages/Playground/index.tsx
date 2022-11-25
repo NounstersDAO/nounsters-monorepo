@@ -12,7 +12,7 @@ import {
 import classes from './Playground.module.css';
 import React, { ChangeEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import Link from '../../components/Link';
-import { ImageData, getNounData, getRandomNounSeed } from '@nouns/assets';
+import { ImageData, getColorsFromSeed, getNounData, getRandomNounSeed } from '@nouns/assets';
 import { buildSVG, EncodedImage, PNGCollectionEncoder } from '@nouns/sdk';
 import InfoIcon from '../../assets/icons/Info.svg';
 import Noun from '../../components/Noun';
@@ -102,7 +102,7 @@ const Playground: React.FC = () => {
       for (let i = 0; i < amount; i++) {
         const seed = { ...getRandomNounSeed(), ...modSeed };
         const { parts, background } = getNounData(seed);
-        const svg = buildSVG(parts, encoder.data.palette, background);
+        const svg = buildSVG(parts, encoder.data.palette, getColorsFromSeed(seed), background);
         setNounSvgs(prev => {
           return prev ? [svg, ...prev] : [svg];
         });
