@@ -60,9 +60,9 @@ export const buildSVG = (
         let colorIndex = draw[1];
 
         //Palette swap here
-        if (colorIndex == 1 || colorIndex == 2) {
-          colorIndex = swapColors[colorIndex - 1];
-        }
+        //if (colorIndex == 1 || colorIndex == 2) {
+        //  colorIndex = swapColors[colorIndex - 1];
+        //}
         const hexColor = paletteColors[colorIndex];
 
         let length = getRectLength(currentX, drawLength, bounds.right);
