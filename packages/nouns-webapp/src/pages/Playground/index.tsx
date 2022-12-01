@@ -43,7 +43,7 @@ const nounsProtocolLink = (
 const nounsAssetsLink = (
   <Link
     text="nouns-assets"
-    url="https://github.com/nounsDAO/nouns-monorepo/tree/master/packages/nouns-assets"
+    url="https://github.com/nounsDAO/nounsters-monorepo/tree/master/packages/nouns-assets"
     leavesPage={true}
   />
 );
@@ -51,7 +51,7 @@ const nounsAssetsLink = (
 const nounsSDKLink = (
   <Link
     text="nouns-sdk"
-    url="https://github.com/nounsDAO/nouns-monorepo/tree/master/packages/nouns-sdk"
+    url="https://github.com/nounsDAO/nounsters-monorepo/tree/master/packages/nouns-sdk"
     leavesPage={true}
   />
 );

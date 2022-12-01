@@ -117,9 +117,9 @@ contract SVGRenderer is ISVGRenderer {
                 while (length > 0) {
                     if (draw.colorIndex != 0) {
                         //Palette swap here
-                        //if (draw.colorIndex == 1 || draw.colorIndex == 2) {
-                        //    draw.colorIndex = uint8(colors << ((draw.colorIndex - 1) * 8));
-                        //}
+                        if (draw.colorIndex == 1 || draw.colorIndex == 2) {
+                            draw.colorIndex = uint8(colors >> ((draw.colorIndex - 1) * 8));
+                        }
                         buffer[cursor] = lookup[length];                                 // width
                         buffer[cursor + 1] = lookup[currentX];                           // x
                         buffer[cursor + 2] = lookup[currentY];                           // y

@@ -8,7 +8,7 @@ const { bodies, accessories, heads, glasses } = images;
 type ObjectKey = keyof typeof images;
 
 export const getColorsFromSeed = (seed: NounSeed): number[] => {
-  return [((seed.accessory % (33 - 3)) + 3), ((seed.head % (51 - 27)) + 27)];
+  return [((seed.accessory % 30) + 3), ((seed.head % 24) + 27)];
 }
 
 /**
