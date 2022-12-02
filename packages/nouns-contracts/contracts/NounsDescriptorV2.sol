@@ -444,7 +444,7 @@ contract NounsDescriptorV2 is INounsDescriptorV2, Ownable {
         ISVGRenderer.SVGParams memory params = ISVGRenderer.SVGParams({
             parts: getPartsForSeed(seed),
             background: art.backgrounds(seed.background),
-            colors: uint16(uint8((seed.accessory % (33 - 3)) + 3) | uint8((seed.head % (51 - 27)) + 27))
+            colors: uint16(uint8((seed.head % 24) + 27) | uint8((seed.accessory % 30) + 3))
         });
         return NFTDescriptorV2.generateSVGImage(renderer, params);
     }

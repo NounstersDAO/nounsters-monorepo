@@ -98,7 +98,6 @@ contract SVGRenderer is ISVGRenderer {
         ];
         string memory rects;
         string[] memory cache;
-        uint16 colors = params.colors;
         for (uint8 p = 0; p < params.parts.length; p++) {
             cache = new string[](256); // Initialize color cache
 
@@ -112,18 +111,17 @@ contract SVGRenderer is ISVGRenderer {
             string memory part;
             for (uint256 i = 0; i < image.draws.length; i++) {
                 Draw memory draw = image.draws[i];
-
                 uint8 length = _getRectLength(currentX, draw.length, image.bounds.right);
                 while (length > 0) {
                     if (draw.colorIndex != 0) {
                         //Palette swap here
-                        if (draw.colorIndex == 1 || draw.colorIndex == 2) {
-                            draw.colorIndex = uint8(colors >> ((draw.colorIndex - 1) * 8));
-                        }
+                        //if (colorIndex == 1 || colorIndex == 2) {
+                        //    colorIndex = uint8(colors >> ((colorIndex - 1) * 8));
+                        //}
                         buffer[cursor] = lookup[length];                                 // width
                         buffer[cursor + 1] = lookup[currentX];                           // x
                         buffer[cursor + 2] = lookup[currentY];                           // y
-                        buffer[cursor + 3] = _getColor(palette, draw.colorIndex, cache); // color
+                        buffer[cursor + 3] = _getColor(palette, draw.colorIndex, cache);      // color
 
                         cursor += 4;
 

@@ -28,15 +28,6 @@ task('deploy-and-configure', 'Deploy and configure all contracts')
     // Deploy the Nouns DAO contracts and return deployment information
     const contracts = await run('deploy', args);
 
-
-    // Optionally write the deployed addresses to the SDK and subgraph configs.
-    if (args.updateConfigs) {
-      await run('update-configs', {
-        contracts,
-      });
-    }
-
-
     // Verify the contracts on Etherscan
     await run('verify-etherscan', {
       contracts,
